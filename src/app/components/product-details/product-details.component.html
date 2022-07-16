@@ -1,0 +1,13 @@
+<h2>Product Details:</h2>
+
+<div *ngIf="product; else productUndefined">
+    <h3> {{ product.name }} </h3>
+    <h4> {{ product.price | currency }} </h4>
+    <h5> {{ product.description }} </h5>
+
+    <button type="button" (click)="addToCart(product)"> Add to cart</button>
+</div>
+<ng-template #productUndefined>
+    <p>Sorry we can't find your product.</p>
+</ng-template>
+

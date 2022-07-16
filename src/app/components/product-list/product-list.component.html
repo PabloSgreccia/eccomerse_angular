@@ -1,0 +1,33 @@
+<h2>Products:</h2>
+
+<div *ngFor="let product of products">
+    <hr>
+    <h3>
+        <!-- Property Binding -->
+        <a 
+            [title]="product.name + ' details'"
+            [routerLink]="['/products', product.id]">
+            {{product.name}}
+        </a>
+    </h3>
+    <p *ngIf="product.description"><strong>Description:</strong> {{ product.description}}</p>
+    <p><strong>Price:</strong> {{ product.price | currency}}</p>
+
+    <div class="product-buttons">
+        <button type="button" (click)="addToCart(product)">Add to Cart</button>
+        
+        <!-- Event Binding -->
+        <button type="button" (click)="share(product.name);">
+            Share
+        </button>
+        
+        <!-- Calling a child, with an input, and with option for an output -->
+        <app-product-alerts 
+            [product]="product"
+            (notify)="onNotify(product.name)">
+        </app-product-alerts>
+    </div>
+
+</div>
+
+<hr>
